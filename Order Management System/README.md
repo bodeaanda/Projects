@@ -1,0 +1,2 @@
+This application manages client orders for a warehouse. It uses a relational database to store information about products, clients, and orders. The system is designed following a layered architecture pattern (Model, Business Logic, Data Access, and Presentation).
+All project classes are documented using JavaDoc, and a graphical user interface has been implemented to provide an intuitive interaction for users.
