@@ -1,0 +1,1 @@
+A web application (in progress) built in Java that provides a visual simulation of cache memory. It allows users to experiment with different cache configurations, including mapping methods, write policies, and replacement strategies, offering an interactive way to understand cache behavior.
