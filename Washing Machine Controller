@@ -1,0 +1,1 @@
+A Washing Machine Controller designed and implemented in VHDL using Vivado and simulated on a Basys 3 Artix-7 FPGA Board. The controller supports multiple washing modes, including both predefined and user-configurable settings.
