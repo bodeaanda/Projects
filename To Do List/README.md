@@ -1,0 +1,1 @@
+A simple To-Do List web application built with HTML, CSS, and JavaScript. It allows users to track their daily tasks. The whole project was built in order to practice basic front-end development concepts.
