@@ -1,0 +1,29 @@
+﻿  main.cpp
+C:\Users\Anda\source\repos\OpenGL_FinalProject\OpenGL_FinalProject\main.cpp(143,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Anda\source\repos\OpenGL_FinalProject\OpenGL_FinalProject\main.cpp(144,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Anda\source\repos\OpenGL_FinalProject\OpenGL_FinalProject\main.cpp(148,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Anda\source\repos\OpenGL_FinalProject\OpenGL_FinalProject\main.cpp(149,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Anda\source\repos\OpenGL_FinalProject\OpenGL_FinalProject\main.cpp(150,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Anda\source\repos\OpenGL_FinalProject\OpenGL_FinalProject\main.cpp(151,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Anda\source\repos\OpenGL_FinalProject\OpenGL_FinalProject\main.cpp(565,23): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Anda\source\repos\OpenGL_FinalProject\OpenGL_FinalProject\main.cpp(814,53): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+  5 of 1829 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    11 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Anda\source\repos\OpenGL_FinalProject\x64\Release\vc120.pdb'; linking object as if no debug info
+LINK : warning LNK4286: symbol '__glewGenBuffers' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+LINK : warning LNK4286: symbol '__glewUniformMatrix4fv' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+LINK : warning LNK4286: symbol '__glewGenVertexArrays' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+LINK : warning LNK4286: symbol '__glewActiveTexture' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+LINK : warning LNK4286: symbol '__glewBufferData' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+LINK : warning LNK4286: symbol '__glewGetUniformLocation' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+LINK : warning LNK4286: symbol '__glewUniform1f' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+LINK : warning LNK4286: symbol '__glewUniform1i' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+LINK : warning LNK4286: symbol '__glewBindBuffer' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+LINK : warning LNK4286: symbol '__glewVertexAttribPointer' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+LINK : warning LNK4286: symbol '__glewBindVertexArray' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+LINK : warning LNK4286: symbol '__glewEnableVertexAttribArray' defined in 'glew32s.lib(glew.obj)' is imported by 'SkyBox.obj'
+  OpenGL_FinalProject.vcxproj -> C:\Users\Anda\source\repos\OpenGL_FinalProject\x64\Release\OpenGL_FinalProject.exe
