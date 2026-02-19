@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PhishyGuard - Login</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6e6e6e;
+            --accent-color: #0066ff;
+            --border-color: rgba(0,0,0,0.1);
+            --input-bg: #ffffff;
+            --container-width: 600px;
+            --header-height: 70px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-color: #3385ff;
+            --border-color: rgba(255,255,255,0.1);
+            --input-bg: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: var(--bg-primary);
+            height: var(--header-height);
+            padding: 0 40px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+
+        .brand {
+            color: var(--text-primary);
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 24px;
+            transition: background-color 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .main-content {
+            margin-top: var(--header-height);
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: var(--container-width);
+            padding: 40px;
+            background-color: var(--bg-primary);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-title {
+            text-align: center;
+            margin-bottom: 32px;
+            color: var(--text-primary);
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 16px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 16px;
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .login-button:hover {
+            filter: brightness(110%);
+            transform: translateY(-1px);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .links-container {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .links-container a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+            display: inline-block;
+        }
+
+        .links-container a:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .footer {
+            padding: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+        }
+
+        @media (max-width: 640px) {
+            :root {
+                --container-width: 100%;
+            }
+            
+            .header {
+                padding: 0 20px;
+            }
+
+            .login-container {
+                padding: 24px;
+                border-radius: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="brand-container">
+            <img src="icons/icon15.png" alt="PhishyGuard Logo" class="logo">
+            <h1 class="brand">PhishyGuard</h1>
+        </div>
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌓</button>
+    </div>
+
+    <div class="main-content">
+        <div class="login-container">
+            <h2 class="login-title">Welcome Back</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="login-button">Log In</button>
+            </form>
+            <div class="links-container">
+                <a href="#">Forgot your password?</a>
+                <a href="/register.html">Don't have an account? Sign up</a>
+                <a href="/about">Learn about PhishyGuard</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="powered-by">
+            Protected by PhishyGuard © 2024
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    localStorage.setItem('phishyguard_token', data.token);
+                    window.location.href = '/dashboard.html';
+                } else {
+                    alert(data.message || 'Login failed');
+                }
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "PhishyGuard",
+  "version": "1.0",
+  "description": "Protect yourself from phishing attempts with real-time email scanning and threat detection",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "notifications",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "https://outlook.live.com/*",
+    "https://outlook.office.com/*",
+    "http://localhost:3000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon15.png",
+      "48": "icons/icon15.png",
+      "128": "icons/icon15.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon15.png",
+    "48": "icons/icon15.png",
+    "128": "icons/icon15.png"
+  }
+} 

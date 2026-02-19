@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PhishyGuard - Guardian Management</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6e6e6e;
+            --accent-color: #0066ff;
+            --border-color: rgba(0,0,0,0.1);
+            --input-bg: #ffffff;
+            --container-width: 800px;
+            --header-height: 70px;
+            --success-color: #4caf50;
+            --danger-color: #f44336;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-color: #3385ff;
+            --border-color: rgba(255,255,255,0.1);
+            --input-bg: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: var(--bg-primary);
+            height: var(--header-height);
+            padding: 0 40px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+
+        .brand {
+            color: var(--text-primary);
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 24px;
+            transition: background-color 0.2s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .logout-button {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .logout-button:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        .main-content {
+            margin-top: var(--header-height);
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            max-width: var(--container-width);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .guardian-form {
+            background-color: var(--bg-primary);
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+            margin-bottom: 32px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .button {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .button-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .button-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .button:hover {
+            filter: brightness(110%);
+            transform: translateY(-1px);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .guardians-list {
+            background-color: var(--bg-primary);
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .guardian-item {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .guardian-item:last-child {
+            border-bottom: none;
+        }
+
+        .guardian-info {
+            flex: 1;
+        }
+
+        .guardian-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .guardian-email {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .guardian-phone {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .guardian-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .footer {
+            padding: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --container-width: 100%;
+            }
+            
+            .header {
+                padding: 0 20px;
+            }
+
+            .guardian-form {
+                padding: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .guardian-item {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .guardian-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="brand-container">
+            <img src="icons/icon15.png" alt="PhishyGuard Logo" class="logo">
+            <h1 class="brand">PhishyGuard</h1>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌓</button>
+            <a href="#" class="logout-button" id="logoutButton">Logout</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="dashboard-container">
+            <h2 class="section-title">Guardian Management</h2>
+            
+            <div class="guardian-form">
+                <form id="guardianForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Guardian Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter guardian's name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Guardian Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter guardian's email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Guardian Phone (Optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter guardian's phone">
+                        </div>
+                    </div>
+                    <button type="submit" class="button button-primary">Add Guardian</button>
+                </form>
+            </div>
+
+            <div class="guardians-list" id="guardiansList">
+                <!-- Guardians will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="powered-by">
+            Protected by PhishyGuard © 2024
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Check authentication
+        const token = localStorage.getItem('phishyguard_token');
+        if (!token) {
+            window.location.href = '/';
+        }
+
+        // Logout functionality
+        document.getElementById('logoutButton').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('phishyguard_token');
+            window.location.href = '/';
+        });
+
+        // Load guardians
+        async function loadGuardians() {
+            try {
+                const response = await fetch('/api/guardians', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to load guardians');
+                }
+
+                const guardians = await response.json();
+                const guardiansList = document.getElementById('guardiansList');
+                guardiansList.innerHTML = '';
+
+                guardians.forEach(guardian => {
+                    const guardianElement = document.createElement('div');
+                    guardianElement.className = 'guardian-item';
+                    guardianElement.innerHTML = `
+                        <div class="guardian-info">
+                            <div class="guardian-name">${guardian.name}</div>
+                            <div class="guardian-email">${guardian.email}</div>
+                            ${guardian.phone ? `<div class="guardian-phone">${guardian.phone}</div>` : ''}
+                        </div>
+                        <div class="guardian-actions">
+                            <button class="button button-danger" onclick="deleteGuardian(${guardian.id})">Remove</button>
+                        </div>
+                    `;
+                    guardiansList.appendChild(guardianElement);
+                });
+            } catch (error) {
+                alert('Failed to load guardians. Please try again.');
+            }
+        }
+
+        // Add guardian
+        document.getElementById('guardianForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const guardianData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone')
+            };
+
+            try {
+                const response = await fetch('/api/guardians', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(guardianData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to add guardian');
+                }
+
+                e.target.reset();
+                loadGuardians();
+            } catch (error) {
+                alert('Failed to add guardian. Please try again.');
+            }
+        });
+
+        // Delete guardian
+        async function deleteGuardian(id) {
+            if (!confirm('Are you sure you want to remove this guardian?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/guardians/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to delete guardian');
+                }
+
+                loadGuardians();
+            } catch (error) {
+                alert('Failed to remove guardian. Please try again.');
+            }
+        }
+
+        // Initial load
+        loadGuardians();
+    </script>
+</body>
+</html> 

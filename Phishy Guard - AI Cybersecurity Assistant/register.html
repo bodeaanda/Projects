@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PhishyGuard - Register</title>
+    <style>
+        :root {
+            /* Light theme variables */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6e6e6e;
+            --accent-color: #0066ff;
+            --border-color: rgba(0,0,0,0.1);
+            --input-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            /* Dark theme variables */
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-color: #0066ff;
+            --border-color: rgba(255,255,255,0.1);
+            --input-bg: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: var(--bg-primary);
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .brand {
+            color: var(--text-primary);
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 20px;
+        }
+
+        .register-container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 24px;
+            background-color: var(--bg-primary);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-title {
+            text-align: center;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .register-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 12px;
+        }
+
+        .register-button:hover {
+            filter: brightness(110%);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .login-link a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .password-requirements {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="brand-container">
+            <img src="icons/icon15.png" alt="PhishyGuard Logo" class="logo">
+            <h1 class="brand">PhishyGuard</h1>
+        </div>
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌓</button>
+    </div>
+
+    <div class="register-container">
+        <h2 class="register-title">Create Account</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <div id="emailError" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <div class="password-requirements">
+                    Password must be at least 8 characters long
+                </div>
+                <div id="passwordError" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <div id="confirmPasswordError" class="error-message"></div>
+            </div>
+            <button type="submit" class="register-button">Create Account</button>
+        </form>
+        <div class="login-link">
+            <a href="/">Already have an account? Log in</a>
+            <span style="display: block; margin-top: 8px;">
+                <a href="/about">Learn more about PhishyGuard</a>
+            </span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="powered-by">
+            Protected by PhishyGuard © 2024
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // API configuration
+        const API_URL = 'http://localhost:3000/api';
+
+        // Registration form handling
+        const registerForm = document.getElementById('registerForm');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+        function showError(element, message) {
+            element.textContent = message;
+            element.style.display = 'block';
+        }
+
+        function clearErrors() {
+            emailError.style.display = 'none';
+            passwordError.style.display = 'none';
+            confirmPasswordError.style.display = 'none';
+        }
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearErrors();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Basic validation
+            if (password.length < 8) {
+                showError(passwordError, 'Password must be at least 8 characters long');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showError(confirmPasswordError, 'Passwords do not match');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Registration failed');
+                }
+
+                // Store the token
+                localStorage.setItem('phishyguard_token', data.token);
+                
+                // Show success and redirect
+                alert('Registration successful! Redirecting to login...');
+                window.location.href = '/';
+            } catch (error) {
+                if (error.message.includes('already exists')) {
+                    showError(emailError, 'Email already registered');
+                } else {
+                    showError(emailError, error.message || 'An error occurred during registration');
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "PhishyGuard",
+  "version": "1.0",
+  "description": "Protect yourself from phishing emails with AI-powered analysis",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "tabs",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "https://outlook.live.com/*",
+    "https://outlook.office.com/*",
+    "https://api.flockx.io/*",
+    "http://localhost:3000/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' https://api.flockx.io/* http://localhost:3000/*"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon15.png",
+      "48": "icons/icon15.png",
+      "128": "icons/icon15.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "icons": {
+    "16": "icons/icon15.png",
+    "48": "icons/icon15.png",
+    "128": "icons/icon15.png"
+  },
+  "externally_connectable": {
+    "matches": ["http://localhost:3000/*"]
+  }
+} 

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>About PhishyGuard</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6e6e6e;
+            --accent-color: #0066ff;
+            --border-color: rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-color: #3385ff;
+            --border-color: rgba(255,255,255,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: var(--bg-primary);
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .brand {
+            color: var(--text-primary);
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background-color: var(--bg-primary);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .section-content {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .feature-card {
+            background-color: var(--bg-secondary);
+            padding: 24px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .cta-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            filter: brightness(110%);
+        }
+
+        .footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="brand-container">
+            <img src="icons/icon15.png" alt="PhishyGuard Logo" class="logo">
+            <h1 class="brand">PhishyGuard</h1>
+        </div>
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌓</button>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">Protect Yourself from Phishing Attacks</h2>
+            <p class="section-content">
+                PhishyGuard is your intelligent companion in the fight against phishing attacks. Using advanced AI technology,
+                we analyze emails in real-time to detect potential threats and keep you safe from malicious actors.
+            </p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3 class="feature-title">AI-Powered Analysis</h3>
+                    <p class="feature-description">
+                        Our sophisticated AI engine examines email content, links, and attachments to identify potential threats
+                        with high accuracy.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Real-time Protection</h3>
+                    <p class="feature-description">
+                        Get instant alerts when suspicious content is detected, allowing you to make informed decisions about
+                        your email interactions.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Guardian System</h3>
+                    <p class="feature-description">
+                        Add trusted contacts as guardians who will be notified if you interact with potentially dangerous
+                        content.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <h3 class="feature-title">Easy Integration</h3>
+                    <p class="feature-description">
+                        Works seamlessly with your existing email client through our browser extension, providing protection
+                        without disrupting your workflow.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-content">
+                PhishyGuard uses state-of-the-art natural language processing to analyze the content and context of emails.
+                Our system checks for common phishing indicators, suspicious links, and malicious patterns while learning
+                from new threats to provide up-to-date protection.
+            </p>
+            <p class="section-content">
+                When a potential threat is detected, PhishyGuard alerts you immediately and provides detailed information
+                about the nature of the threat. This allows you to make informed decisions about how to proceed with
+                suspicious emails.
+            </p>
+        </div>
+
+        <div class="cta-container">
+            <a href="/" class="cta-button">Get Started with PhishyGuard</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="powered-by">
+            Protected by PhishyGuard © 2024
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.setAttribute('data-theme', savedTheme);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html> 
