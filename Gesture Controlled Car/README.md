@@ -14,7 +14,7 @@ This project is a wireless, gesture-controlled car that can be maneuvered entire
 - **L298N Motor Driver** (controls the DC motors)
 - **12V DC Motors** (used for car wheels)
 - **9V Batteries** (power supply)
-- **Breadboard & Jumper Wires (used for assembling both circuits)
+- **Breadboard & Jumper Wires** (used for assembling both circuits)
 
 ### Software
 - **Arduino IDE** 
