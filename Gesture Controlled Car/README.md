@@ -1,6 +1,6 @@
 # Gesture Controlled Car
 
-\##Description
+\## Description
 
 This project is a wireless, gesture-controlled car that can be maneuvered entirely through hand movements. By simply tilting your hand, the car can move forward, backward, left and right. It leverages and MPU6050 sensor (accelerometer and gyroscope) to detect your hand's movement and an nRF24L01 transceiver module to wirelessly send the gesture commands to the car.
 
